@@ -1,5 +1,5 @@
-# shen-JAMS
-## Friend Coral
+# TEAM SHEN-JAMS
+## Project Name: Friend Coral
 
 This application allows friends to setup a get together with friends. An equadistant location is determined by the app and a list of places the friends have in common are determined. The app supports:
 
