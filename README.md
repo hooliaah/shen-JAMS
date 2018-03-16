@@ -11,8 +11,8 @@ This application allows friends to setup a get together with friends. An equadis
 
 ## Team Members and Roles
 
-Julie Groth - Models and Sequelize
-McKenna Jo Beardsley - UI CSS
-Alvin Go - Logic, API
-Scott Reynolds - UI JS, API
+- Julie Groth: Models and Sequelize
+- McKenna Jo Beardsley: UI CSS
+- Alvin Go: Logic, API
+- Scott Reynolds: UI JS, API
 
