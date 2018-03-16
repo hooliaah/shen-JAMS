@@ -1,0 +1,13 @@
+
+
+.nav-link {
+   font-size: 25px;
+}
+
+.nav-tabs {
+  list-style: none;
+  margin: 0 2px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
