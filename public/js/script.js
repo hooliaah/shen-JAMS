@@ -1,5 +1,22 @@
 $(document).ready(function() {
 
+   // login page operations
+
+   // var loginButton = $("#login-button");
+   // var signupButton = $("#signup-button");
+
+
+   $(document).on("click","#login-button", showLoginForm())
+   $(document).on("click","#signup-button", showSignupForm())
+
+   function showLoginForm() {
+
+   }
+
+   function showSignupForm() {
+
+   }
+});
 
 // Scott's old testing code      
 // $("#find-me").on("click", getLocation())
@@ -35,5 +52,3 @@ $(document).ready(function() {
 //    });
 // };
 // console.log("document loaded");
-
-});

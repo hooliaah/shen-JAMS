@@ -16,7 +16,7 @@ module.exports = function(app) {
 
   app.get("/home", function(req, res) {
     // load home page
-    res.render("profile");
+    res.render("home");
   });
 
   app.get("/profile", function(req, res) {
@@ -26,18 +26,18 @@ module.exports = function(app) {
 
   app.get("/friends", function(req, res) {
     // load friends page
-    res.render("profile");
+    res.render("friends");
   });
 
   // could be modal in friends page
   app.get("/addfriends", function(req, res) {
     // load friends page
-    res.render("profile");
+    res.render("addfriends");
   });
 
   app.get("/events", function(req, res) {
     // load events page
-    res.render("profile");
+    res.render("events");
   });
 
   // could be modal in events page
@@ -55,8 +55,7 @@ module.exports = function(app) {
     // load notify page
     res.render("notify");
   });
-  
-  Api
+
 
   // app.get("/cms", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/cms.html"));
