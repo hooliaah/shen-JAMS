@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/hooliaah/shen-JAMS.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -19,6 +20,8 @@
   "homepage": "https://github.com/hooliaah/shen-JAMS#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0"
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
