@@ -6,8 +6,24 @@
 
 .nav-tabs {
   list-style: none;
-  margin: 0 2px;
+  /* margin: 0 2px; */
   padding: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
+
+#login-logo {
+  /* position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%); */
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-logo-div {
+  height: 200px;
+} 
