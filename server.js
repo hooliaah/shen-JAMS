@@ -6,6 +6,9 @@ var https = require("https");
 
 var PORT = process.env.PORT || 8080;
 
+// Requiring our models for syncing
+var db = require("./models");
+
 var app = express();
 
 app.use(express.static("public"));
@@ -21,8 +24,11 @@ app.set("view engine", "handlebars");
 require("./routes/html-routes.js")(app);
 // require("./routes/api-routes.js")(app);
 
-app.listen(PORT, function() {
-   console.log("App listening on PORT " + PORT);
+// sync sequelize models then start Express app
+db.sequelize.sync().then(function () {
+    app.listen(PORT, function () {
+        console.log("App listening on PORT " + PORT);
+    });
 });
 
 
