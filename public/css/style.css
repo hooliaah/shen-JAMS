@@ -11,3 +11,33 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+#login-container .nav{
+  margin-top:20px;
+}
+
+#login-container .nav a{
+  padding: 20px;
+  /* margin-top: 20px; */
+}
+
+.content{
+  width: 100%;
+  /* margin-top:20px; */
+  display: flex;
+  justify-content: center;
+}
+
+
+.convertToGrey{
+  background: grey;
+  border-radius: 4px;
+  margin:0;
+}
+
+#login-container .nav a:hover{
+  background: lightgrey;
+  border:none;
+  
+}
