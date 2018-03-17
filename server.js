@@ -1,4 +1,4 @@
-// Team Shen Jams. Project Friend Coral. March 2018
+// Team Shen Jams. Project Friend Corral. March 2018
 
 var express = require("express");
 var bodyParser = require("body-parser");
