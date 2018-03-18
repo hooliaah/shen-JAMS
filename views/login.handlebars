@@ -1,25 +1,20 @@
 
 <div class="container-flex" id="login-container">
-    <row id="d-flex login-nav mx-auto">
+    <div class="row d-flex login-nav mx-auto">
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="nav-item active login-button" id="login-button">
+                <li role="presentation" class="nav-item active" id="login-button">
                     <a class="nav-link" href="#">Login</a>
                 </li>
-                    <li role="presentation" class="nav-item signup-button" id="signup-button">
+                    <li role="presentation" class="nav-item" id="signup-button">
                 <a class="nav-link" href="#">Sign up</a>
                 </li>
             </ul>
-            <div id="login-logo-div my-1" class="d-flex align-self-center">
+                <div id="login-logo-div" class="d-flex align-self-center">
             <img id="login-logo" class="mx-auto m-2" src="/img/friendcorral.png" alt="Friend Corral Logo">
          </div>
-         <div class="col-md-2"></div>
-    </row>
-
-    {{!-- <div class="content"> --}}
-    <div class="row">
-        <div class="collapse" id="login-form">
+         <div class="collapse" id="login-form">
         <form>
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -60,6 +55,7 @@
             <button class='btn btn-primary btn-block'>Facebook</button>
         </form>
     </div>
+    <div class="col-md-2"></div>     
 </div>
 
 
