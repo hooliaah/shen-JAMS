@@ -1,10 +1,7 @@
+'use scrict';
+
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
-        user_name: {
-            type: DataTypes.STRING,
-            isAlpha: true,
-            notNULL: true
-        },
         first_name: {
             type: DataTypes.STRING,
             isAlpha: true,
@@ -32,10 +29,6 @@ module.exports = function (sequelize, DataTypes) {
         address: {
             type: DataTypes.STRING,
             notNULL: true
-        },
-        photo: {
-            type: DataTypes.STRING,
-            isUrl: true
         },
         interest_coffee: {
             type: DataTypes.BOOLEAN,
@@ -68,7 +61,11 @@ module.exports = function (sequelize, DataTypes) {
         interest_club: {
             type: DataTypes.BOOLEAN,
             default: true
+        },
+        interest_churro: {
+            type: DataTypes.BOOLEAN,
+            default: true
         }
     });
-return User;
+    return User;
 };
