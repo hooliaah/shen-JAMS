@@ -1,11 +1,37 @@
-<!-- logo -->
-
 <!-- menu drop down side bar with friends, profile, events, logout-->
 
+
+<!-- logo -->
+<div class="dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Menu
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+<button class="dropdown-item" type="button">Profile</button>
+<button class="dropdown-item" type="button">Events</button>
+<button class="dropdown-item" type="button">Friends</button>
+<button class="dropdown-item" type="button">Log Out</button>
+</div>
+</div>
+
+
+<div id="login-logo-div" class="d-flex align-self-center">
+  <img id="login-logo" class="mx-auto m-2" src="/img/friendcorral.png" alt="Friend Corral Logo">
+</div>
+
 <!-- event list -->
+<ul class="list-group" id="event-list-display">
+<li type="button" class="list-group-item">Event1</li>
+<li type="button" class="list-group-item">Event2</li>
+<li type="button" class="list-group-item">Event3</li>
+<li type="button" class="list-group-item">Event4</li>
+<li type="button" class="list-group-item">Event5</li>
+</ul>
 
 <!-- name -->
-
+<div id="user-name-display"> <h2>First and Last Name go Here</h2></div>
 <!-- your location -->
+<div>Current Location:<div id="user-location-display"> Los Angeles, CA</div></div>
 
 <!-- update location button -->
+<button class='btn btn-primary btn-block' id="location-update-btn">Update Location</button>
