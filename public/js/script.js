@@ -2,8 +2,6 @@
 
   $("#find-me").on("click", getLocation);
 
-   $(“#signup-button”).addClass(“convertToGrey”);
-
    $(“#login-button”).on(“click”, function () {
        $(“#signup-button”).addClass(“convertToGrey”);
        $(“#signup-button”).removeClass(“active”);
