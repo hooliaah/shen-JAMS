@@ -14,6 +14,12 @@ module.exports = function(app) {
     res.render("login");
   });
 
+  app.get("/addinterests", function(req, res) {
+    // check for session key
+    // if session key go to home page else go to login page
+    res.render("addinterests");
+  });
+
   app.get("/home", function(req, res) {
     // load home page
     res.render("home");
@@ -55,14 +61,4 @@ module.exports = function(app) {
     // load notify page
     res.render("notify");
   });
-
-  // app.get("/cms", function(req, res) {
-  //   res.sendFile(path.join(__dirname, "../public/cms.html"));
-  // });
-
-  // // blog route loads blog.html
-  // app.get("/blog", function(req, res) {
-  //   res.sendFile(path.join(__dirname, "../public/blog.html"));
-  // });
-
 };
