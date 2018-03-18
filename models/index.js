@@ -37,10 +37,10 @@ db.users = require('./users.js')(sequelize, Sequelize);
 db.events = require('./events.js')(sequelize, Sequelize);
 
 db.users.belongsToMany(db.events, {
-  through: 'user_event'
+  through: 'user_events'
 });
 db.events.belongsToMany(db.users, {
-  through: 'user_event'
+  through: 'user_events'
 });
 db.users.belongsToMany(db.users, {
   as: 'friends',
