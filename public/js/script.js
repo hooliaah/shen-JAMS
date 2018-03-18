@@ -31,8 +31,16 @@ function loadWindow() {
                   <input type = 'password' placeholder = 'Password: (must be at least 6 characters)' class='form-control'/>
               </div>
 
+              <div class='form-group'>
+                  <label>Default Address:</label>
+                  <input type = 'text' placeholder = 'Street, Apt #' class='form-control'/>
+                  <input type = 'text' placeholder = 'City' class='form-control'/>
+                  <input type = 'text' placeholder = 'State' class='form-control'/>
+                  <input type = 'text' placeholder = 'Zip Code' class='form-control'/>
+              </div>
+
               <button class='btn btn-primary btn-block'>Signup</button>
-              <button class='btn btn-primary btn-block'>Facebook</button>
+
           </form>
       `;
   };
