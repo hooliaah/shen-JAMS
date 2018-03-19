@@ -5,6 +5,7 @@ $(window).on('load', function() {
   // $("find-me").on("click", getLocation);
 
   $("#signup-button").addClass("convertToGrey");
+  $("#login-form").show();
 
   $("#login-button").on("click", function () {
       $("#signup-button").addClass("convertToGrey");
@@ -35,7 +36,7 @@ $(window).on('load', function() {
 
   $(document).on("submit", "#signup-form", handleSignupFormSubmit);
  
-  // A function to handle what happens when the form is submitted to create a new Author
+  // A function to handle what happens when the form is submitted to create a new user
   function handleSignupFormSubmit(event) {
     event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
@@ -57,15 +58,13 @@ $(window).on('load', function() {
         password : $("#password").val().trim().trim(),
         phone : $("#phone").val().trim().trim(),
         email_address : $("#email-address").val().trim().trim(),
-        address : $("#address-street").val().trim().trim() + "," + $("#address-city-state").val().trim().trim() + $("#address-zip").val().trim().trim() 
+        address : $("#address-street").val().trim().trim() + ", " + $("#address-city-state").val().trim().trim() + " " + $("#address-zip").val().trim().trim() 
       }
 
       $.post("api/v1/signup", userData)
-      // .then(function(res, req) {
-      //   res.json(res);
-      // })
+      .then(function(res, req) {
+        console.log(res);
+      })
     }
-   
   }
- 
 });
