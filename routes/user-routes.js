@@ -5,42 +5,40 @@ module.exports = function(app) {
   app.post("/api/v1/signup", function(req, res) {
     db.User.create(req.body).then(function(dbPost) {
       console.log(dbPost.dataValues.id);
-      
+
       // res.json(dbPost);
     });
   });
 
 
   // get user's friends
-  app.get("/api/v1/home/:userid", function(req, res) {
+  app.get("/api/v1/home/:userid/friends", function(req, res) {
     db.User.findAll({
-
+      where: {
+        id: req.params.userid
+      },
       include: [{
-        model: user_friends,
-        as: 'Friends',
-        where: {
-          UserId: req.params.userid
-        },
-        include: [Users]
+        model: db.User,
+        as: 'friends',
+        through: 'user_friends'
       }]
-    }).then(function(err, dbPost) {
-      if (err) {throw err};
+    }).then(function(dbPost) {
       res.json(dbPost);
       console.log(dbPost);
     });
   });
 
   // get user's events
-  app.get("/api/v1/home/:userid", function(req, res) {
+  app.get("/api/v1/home/:userid/events", function(req, res) {
     db.User.findAll({
-      // include: [{
-      //     model: user_events,
-      //     where: {
-      //       EventID: req.params.userid
-      //     },
-      //     include: [Events]
-      //   }
-      // ]
+      where: {
+        id: req.params.userid
+      },
+      include: [{
+        model: db.Event,
+        as: 'Events',
+        through: 'user_event'
+      }]
     }).then(function(dbPost) {
       res.json(dbPost);
       console.log(dbPost);
@@ -48,12 +46,11 @@ module.exports = function(app) {
   });
 
   // post user event
-  app.post("/api/v1/home/:userid", function(req, res) {
+  app.post("/api/v1/home/:userid/:eventname", function(req, res) {
     db.User.create(req.body).then(function(dbPost) {
       res.json(dbPost);
       console.log(dbPost);
     });
   });
-
 
 };
