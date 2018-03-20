@@ -5,15 +5,15 @@ module.exports = function(sequelize, DataTypes) {
     event_name: {
       type: DataTypes.STRING,
       isAlpha: true,
-      notNULL: true
+      allowNull: false
     },
     event_time: {
       type: DataTypes.STRING,
-      notNULL: true
+      allowNull: false
     },
     event_location: {
       type: DataTypes.STRING,
-      notNULL: true
+      allowFalse: false
     }
   });
   Event.associate = function(models) {
