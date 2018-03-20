@@ -47,7 +47,7 @@ module.exports = function(app) {
 
 
   // get user's friends
-  app.get("/api/v1/home/:userid/friends", function(req, res) {
+  app.get("/api/v1/friends/:userid", function(req, res) {
     db.User.findAll({
       where: {
         id: req.params.userid
@@ -64,7 +64,7 @@ module.exports = function(app) {
   });
 
   // get user's events
-  app.get("/api/v1/home/:userid/events", function(req, res) {
+  app.get("/api/v1/events/:userid", function(req, res) {
     db.User.findAll({
       where: {
         id: req.params.userid
@@ -81,11 +81,30 @@ module.exports = function(app) {
   });
 
   // post user event
-  app.post("/api/v1/home/:userid/:eventname", function(req, res) {
-    db.User.create(req.body).then(function(dbPost) {
+  app.post("/api/v1/events", function(req, res) {
+    db.Event.create(req.body).then(function(dbPost) {
       res.json(dbPost);
       console.log(dbPost);
     });
   });
+
+  // add friend
+  app.post("/api/v1/friends/:userid", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.userid
+      },
+      include: [{
+        model: db.User,
+        as: 'friends',
+        through: 'user_friends'
+      }]
+    }).on('success', function(user) {
+      user.setUser({FriendId: req.params.friends});
+    }).then(function(dbPost) {
+      res.json(dbPost);
+      console.log(dbPost);
+    })
+  })
 
 };

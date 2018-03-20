@@ -1,0 +1,82 @@
+<!-- this is for the add events page -->
+<div class="container">
+  <h2>Create Event Page</h2>
+
+<!-- name for event -->
+
+    <div class="form-group">
+      <label for="event">Event Name:</label>
+      <input type="text" class="form-control" id="event-name" placeholder="Event Name..." name="event">
+    </div>
+</div>
+
+<hr>
+<!-- Event Type -->
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Event Type
+  </button>
+  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Coffee</a>
+    <a class="dropdown-item" href="#">Bar</a>
+    <a class="dropdown-item" href="#">Restaurant</a>
+    <a class="dropdown-item" href="#">Movie</a>
+    <a class="dropdown-item" href="#">Hike</a>
+    <a class="dropdown-item" href="#">Park</a>
+    <a class="dropdown-item" href="#">Gym</a>
+    <a class="dropdown-item" href="#">Club</a>
+    <a class="dropdown-item" href="#">Churros</a>
+
+  </div>
+</div>
+
+<hr>
+<!-- date for event -->
+<div class="form-group">
+  Select a date: <input type="date" name="usr_date">
+</div>
+
+<hr>
+<!-- time for event -->
+<div class="form-group">
+  Select a time: <input type="time" name="usr_time">
+</div>
+
+<hr>
+<!-- search for friends -->
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search Friends by Email" name="search">
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="search">Search</button>
+    </div>
+  </div>
+
+<hr>
+<!-- select friends  -->
+<label class="container">
+  <input type="checkbox">
+  One
+  <span class="checkmark"></span>
+</label>
+
+<label class="container">
+  <input type="checkbox">
+  Two
+  <span class="checkmark"></span>
+</label>
+
+<label class="container">
+  <input type="checkbox">
+  Three
+  <span class="checkmark"></span>
+</label>
+
+<label class="container">
+  <input type="checkbox">
+  Four
+  <span class="checkmark"></span>
+</label>
+
+<hr>
+<!-- button to create event -->
+<button class='btn btn-primary btn-block'>Create Event</button>
