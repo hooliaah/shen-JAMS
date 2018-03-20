@@ -19,6 +19,15 @@
   border-bottom: none;
 }
 
+/*image responsive*/
+/*#login-logo {
+    width: 50%;
+    height: auto;
+}*/
+
+.dropdown-menu {
+  left: -75px;
+}
 
 /*#login-container .nav{
   margin-top:20px;
@@ -55,18 +64,26 @@
   /*justify-content: space-around;
 }*/
 
-#login-logo {
+/*#login-logo {
   /* position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 100%); */
-  width: 75%;
+  /*width: 75%;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+/*}*//*/
 
-#login-logo-div {
+/*#login-logo-div {
   height: 200px;
+}*/
+/*
+body {
+  background-color: #F2EEEE;
+}*/
+
+.navbar {
+  background-color: white;
 }
