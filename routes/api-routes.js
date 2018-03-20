@@ -3,8 +3,7 @@
 // module.exports = function(app) {
 
 //    // Each of the below routes just handles the HTML page that the user gets sent to.
- 
-//    // login - checks 
+
 //    app.get("/api/v1/profile", function(req, res) {
 //      // retrieve profile into data
 //      res.JSON(data);
@@ -20,6 +19,7 @@
 //       res.JSON(data);
 //     });
 
+// instead of profile should use user?
 //     app.post("api/v1/profile", function(req, res) {
 //       // add profile, return status
 //       res.JSON(status);
@@ -65,4 +65,4 @@
 //       res.JSON(status);
 //     });
 
-//    }
+   // }

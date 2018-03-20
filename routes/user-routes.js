@@ -1,14 +1,49 @@
 var db = require("../models");
 
 module.exports = function(app) {
+
+  // scott wrote this to get the user profile back for testing
+  app.get("/api/v1/user/:userid", function(req, res) {
+    db.User.findAll({
+      where: {
+        id: req.params.userid
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+      console.log(dbPost);
+    });
+  });
+
   // post user to database
   app.post("/api/v1/signup", function(req, res) {
     db.User.create(req.body).then(function(dbPost) {
       console.log(dbPost.dataValues.id);
+      $.get("/api/v1/user/" + dbPost.dataValues.id, function(req, res) {
+        console.log("res ",res);
+      })
+      .then(function(dbPost) {
+        console.log("dbPost",dbPost);
+        res.json(dbPost);
+    })
+  });
+});
 
-      // res.json(dbPost);
+  
+  app.post("/api/v1/signup", function(req, res) {
+    db.User.create(req.body).then(function(dbPost) {
+
+      console.log("new user ID", dbPost.dataValues.id);
+      app.get("/api/v1/user/" + dbPost.dataValues.id, function(req, res) {
+        console.log("res ",res);
+        return(res)
+      }).then(function(data){
+        res.json(data);
+      })
+
     });
   });
+
+  
 
 
   // get user's friends

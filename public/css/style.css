@@ -29,6 +29,12 @@
   /* margin-top: 20px; */
 }
 
+#login-container form {
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
 .content{
   margin-left: 15px;
   margin-right: 15px;

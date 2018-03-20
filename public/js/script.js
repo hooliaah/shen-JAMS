@@ -1,6 +1,4 @@
 $(window).on('load', function() {
-
-  // getLocation();
   
   // $("find-me").on("click", getLocation);
 
@@ -23,14 +21,15 @@ $(window).on('load', function() {
       $(this).addClass("active").removeClass("convertToGrey");
   });
   
-  // function getLocation() {
-  
-  //   $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCp3aTtHLbEh8qxnsXxPGo2mJbzuRmx8QY", function(data) {
-  //     console.log(data)
-  //   }).catch((err) => {
-  //     console.error(err.message);
-  //   });
-  // };
+  function getLocation() {
+      $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCp3aTtHLbEh8qxnsXxPGo2mJbzuRmx8QY", function(data)
+      {
+        console.log(data)
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  };
 
   // Submit User
 
@@ -41,13 +40,13 @@ $(window).on('load', function() {
     event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
     console.log("entereed HandleSignupForm validation");
-    if (!$("#first-name").val().trim().trim()
-        // !$("#last-name").val().trim().trim() ||
-        // !$("#phone").val().trim().trim() ||
-        // !$("#password").val().trim().trim() ||
-        // !$("#address-street").val().trim().trim() ||
-        // !$("#address-city-state").val().trim().trim() ||
-        // !$("#address-zip").val().trim().trim()
+    if (!$("#first-name").val().trim().trim() ||
+        !$("#last-name").val().trim().trim() ||
+        !$("#phone").val().trim().trim() ||
+        !$("#password").val().trim().trim() ||
+        !$("#address-street").val().trim().trim() ||
+        !$("#address-city-state").val().trim().trim() ||
+        !$("#address-zip").val().trim().trim()
     ) {
       return;
     } else {
@@ -63,7 +62,7 @@ $(window).on('load', function() {
 
       $.post("api/v1/signup", userData)
       .then(function(res, req) {
-        console.log(res);
+        console.log("res ",res);
       })
     }
   }
