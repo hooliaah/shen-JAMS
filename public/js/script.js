@@ -31,7 +31,9 @@ $(window).on('load', function() {
       });
   };
 
-  // Submit User
+  // SIGNUP Create new user
+  // Then update interests
+  // Then add friends
 
   $(document).on("submit", "#signup-form", handleSignupFormSubmit);
  
@@ -61,9 +63,25 @@ $(window).on('load', function() {
       }
 
       $.post("api/v1/signup", userData)
-      .then(function(res, req) {
-        console.log("res ",res);
-      })
+      .then(function(data){
+        console.log("data", data);
+        window.location.href="/api/v1/interests/" + data;
+      })    
     }
   }
+
+  function myFunction() {
+    // Get the checkbox
+    var checkBox = document.getElementById("myCheck");
+    // Get the output text
+    var text = document.getElementById("text");
+  
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked == true){
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
+
 });

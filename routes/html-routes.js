@@ -61,4 +61,9 @@ module.exports = function(app) {
     // load notify page
     res.render("notify");
   });
+
+  app.get("/addinterests", function(req, res) {
+    // load notify page
+    res.render("addinterests");
+  });
 };

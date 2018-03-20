@@ -5,42 +5,30 @@ module.exports = function(sequelize, DataTypes) {
     first_name: {
       type: DataTypes.STRING,
       isAlpha: true,
-      validate: {
-        notNULL: true
-      }
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
       isAlpha: true,
-      validate: {
-        notNULL: true
-      }
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
-      validate: {
-        notNULL: true
-      }
+      allowNull: false
     },
     phone: {
       type: DataTypes.STRING,
       isNumeric: true,
-      validate: {
-        notNULL: true
-      }
+      allowNull: false
     },
     email_address: {
       type: DataTypes.STRING,
       isEmail: true,
-      validate: {
-        notNULL: true
-      }
+      allowNull: false
     },
     address: {
       type: DataTypes.STRING,
-      validate: {
-        notNULL: true
-      }
+      allowNull: false
     },
     interest_coffee: {
       type: DataTypes.BOOLEAN,
