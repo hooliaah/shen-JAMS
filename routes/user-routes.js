@@ -18,34 +18,23 @@ module.exports = function(app) {
   app.post("/api/v1/signup", function(req, res) {
     db.User.create(req.body).then(function(dbPost) {
       console.log("created id", dbPost.dataValues.id);
-      db.User.findOne({
-        where: {
-          id: dbPost.dataValues.id
-        }
-      }).then(function(record) {
-        console.log("return 2", record);
-        res.json(record);
-      });
-  });
-});
-
-  
-  app.post("/api/v1/signup", function(req, res) {
-    db.User.create(req.body).then(function(dbPost) {
-
-      console.log("new user ID", dbPost.dataValues.id);
-      app.get("/api/v1/user/" + dbPost.dataValues.id, function(req, res) {
-        console.log("res ",res);
-        return(res)
-      }).then(function(data){
-        res.json(data);
-      })
-
+      res.json(dbPost.dataValues.id);
     });
   });
 
-  
-
+  app.get("/api/v1/interests/:userid", function(req, res){
+    db.User.findOne({
+      where: {
+        id: req.params.userid
+      }
+    }).then(function(record) {
+      console.log("returned ", record.dataValues);
+      var hbsObject = {
+        record : record.dataValues
+      }
+      res.render("addinterests", hbsObject);
+  });
+  })
 
   // get user's friends
   app.get("/api/v1/friends/:userid", function(req, res) {
@@ -79,6 +68,13 @@ module.exports = function(app) {
       res.json(dbPost);
       console.log(dbPost);
     });
+  });
+
+  // post interests
+  app.post("/api/v1/addinterests", function(req, res) {
+      res.render("addinterests", req.body, function(err, html) {
+        console.log("html ",html);
+      });
   });
 
   // post user event
