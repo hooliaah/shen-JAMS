@@ -20,7 +20,7 @@ module.exports = function(app) {
       console.log("created id", dbPost.dataValues.id);
       res.json(dbPost.dataValues.id);
     });
-  });
+  })
 
   app.get("/api/v1/interests/:userid", function(req, res){
     db.User.findOne({
@@ -33,8 +33,18 @@ module.exports = function(app) {
         record : record.dataValues
       }
       res.render("addinterests", hbsObject);
-  });
+    });
   })
+
+  // update interests (scott:not tested yed)
+  app.put("/api/v1/interests/:userid", function(req, res){
+    console.log("req.body.interestData ", req.body.interestData)
+    db.User.update(req.body.interestData, 
+      { where: {id: req.params.userid}
+    }).then(function (result) {
+      console.log(result);  
+  });
+})
 
   // get user's friends
   app.get("/api/v1/friends/:userid", function(req, res) {
