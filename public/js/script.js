@@ -66,8 +66,9 @@ $(window).on('load', function() {
 
       $.post("api/v1/signup", userData)
       .then(function(data){
+        userId = data; // data returns the created userid
         console.log("data", data);
-        window.location.href="/api/v1/interests/" + data;
+        window.location.href="/api/v1/interests/" + userId;
       })    
     }
   }
@@ -76,7 +77,8 @@ $(window).on('load', function() {
 
   $(document).on("submit", "#interests-form", handleInterestFormUpdate);
  
-  // A function to handle what happens when the form is submitted to create a new user
+  // A function to update the interest for the user
+
   function handleInterestFormUpdate(event) {
     event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
@@ -93,13 +95,13 @@ $(window).on('load', function() {
         interest_churro : $("#interest-churro").val()
       }
 
-      $.put("api/v1/interests/" + record.id, userData)
+      $.put("api/v1/interests/" + userId, userData)
       .then(function(data){
         console.log("interests ", data);
-        window.location.href="/api/v1/friends/" + data;
+        window.location.href="/api/v1/friends/" + userId;
       })    
     }
-  }
+  
 
 
 });

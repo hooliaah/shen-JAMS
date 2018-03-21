@@ -40,9 +40,12 @@ module.exports = function(app) {
   app.put("/api/v1/interests/:userid", function(req, res){
     console.log("req.body.interestData ", req.body.interestData)
     db.User.update(req.body.interestData, 
-      { where: {id: req.params.userid}
-    }).then(function (result) {
+      { where: 
+        {id: req.params.userid}
+    })
+    .then(function (result) {
       console.log(result);  
+      return;
   });
 })
 

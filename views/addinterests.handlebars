@@ -1,43 +1,44 @@
 <p>First Name: {{record.first_name}}</p>
 
 
-<form class="form-horizontal" action="/addfriends">
+<form class="form-horizontal" id="interests-form" action="#">
   <div class="form-group">
+
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_coffee}}> Coffee</label>
+  <label><input id="interest-coffee" type="checkbox" checked={{record.interest_coffee}}> Coffee</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_bar}}> Bar</label>
+  <label><input id="interest-bar" type="checkbox" checked={{record.interest_bar}}> Bar</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_restaurant}}> Restaurant</label>
+  <label><input id="interest-restaurant" type="checkbox" checked={{record.interest_restaurant}}> Restaurant</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_movie}}> Movie</label>
+  <label><input id="interest-movie" type="checkbox" checked={{record.interest_movie}}> Movie</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_hike}}> Hike</label>
+  <label><input id="interest-hike" type="checkbox" checked={{record.interest_hike}}> Hike</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_park}}> Park</label>
+  <label><input id="interest-park" type="checkbox" checked={{record.interest_park}}> Park</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_gym}}> Gym</label>
+  <label><input id="interest-gym" type="checkbox" checked={{record.interest_gym}}> Gym</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_club}}> Club</label>
+  <label><input id="interest-club" type="checkbox" checked={{record.interest_club}}> Club</label>
 </div>
 
 <div class="checkbox">
-  <label><input type="checkbox" checked={{record.interest_churro}}> Churros</label>
+  <label><input id="interest-churro" type="checkbox" checked={{record.interest_churro}}> Churros</label>
 </div>
 
 
-<button class='btn btn-primary btn-block'><a href="/addfriends">Add Friends</a></button>
+<button class='btn btn-primary btn-block'>Add Friends</button>
