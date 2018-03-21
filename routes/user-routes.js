@@ -1,5 +1,5 @@
 var db = require("../models");
-
+var sequelize = require("sequelize");
 module.exports = function(app) {
 
   // scott wrote this to get the user profile back for testing
@@ -22,7 +22,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/v1/interests/:userid", function(req, res){
+  app.get("/api/v1/interests/:userid", function(req, res) {
     db.User.findOne({
       where: {
         id: req.params.userid
@@ -30,10 +30,10 @@ module.exports = function(app) {
     }).then(function(record) {
       console.log("returned ", record.dataValues);
       var hbsObject = {
-        record : record.dataValues
+        record: record.dataValues
       }
       res.render("addinterests", hbsObject);
-  });
+    });
   })
 
   // get user's friends
@@ -72,9 +72,9 @@ module.exports = function(app) {
 
   // post interests
   app.post("/api/v1/addinterests", function(req, res) {
-      res.render("addinterests", req.body, function(err, html) {
-        console.log("html ",html);
-      });
+    res.render("addinterests", req.body, function(err, html) {
+      console.log("html ", html);
+    });
   });
 
   // post user event
@@ -87,21 +87,14 @@ module.exports = function(app) {
 
   // add friend
   app.post("/api/v1/friends/:userid", function(req, res) {
-    db.User.findOne({
-      where: {
-        id: req.params.userid
-      },
-      include: [{
-        model: db.User,
-        as: 'friends',
-        through: 'user_friends'
-      }]
-    }).on('success', function(user) {
-      user.setUser({FriendId: req.params.friends});
-    }).then(function(dbPost) {
-      res.json(dbPost);
-      console.log(dbPost);
-    })
-  })
+    db.User.findById(req.params.userid).then((user) => {
+      db.User.findById(6).then((friend) => {
+        user.addFriend(friend).then((dbPost) => {
+          console.log(dbPost)
+        })
+      })
+    });
+  });
+
 
 };
