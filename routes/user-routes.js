@@ -96,5 +96,16 @@ module.exports = function(app) {
     });
   });
 
+  // add to user_event
+  app.post("/api/v1/events/:userid", function(req, res) {
+    db.User.findById(req.params.userid).then((user) => {
+      db.Event.findById(4).then((corral) => {
+        user.addEvent(corral).then((dbPost) => {
+          console.log(dbPost)
+        })
+      })
+    });
+  });
+
 
 };
