@@ -102,9 +102,10 @@ module.exports = function(app) {
   // (6) req.body.id
   app.post("/api/v1/friends/:userid", function(req, res) {
     db.User.findById(req.params.userid).then((user) => {
-      db.User.findById(6).then((friend) => {
+      db.User.findById(req.body.friendid).then((friend) => {
         user.addFriend(friend).then((dbPost) => {
           console.log(dbPost)
+          res.json(dbPost);
         })
       })
     });

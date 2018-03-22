@@ -1,6 +1,8 @@
 $(window).on('load', function() {
 
-  var userId = null;userId
+  var userId = null;
+
+  console.log("userID", userId);
 
   // $("find-me").on("click", getLocation);
 
@@ -65,7 +67,6 @@ $(window).on('load', function() {
       }
 
       // post user profile and return interests
-
       $.post("api/v1/signup", userData)
       // $.post("signup", userData)
 
