@@ -28,6 +28,10 @@
   width: 100%;*/
 }
 
+#page-heading {
+  color: blue;
+  text-align: center;
+}
 
 /*image responsive*/
 /*#login-logo {
