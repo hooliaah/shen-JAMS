@@ -3,10 +3,10 @@ var passport = require('passport');
 
 module.exports = function (app) {
     app.get('/signup', authController.signup);
-    app.get('/signin', authController.signin);
+    app.get('/login', authController.signin);
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/home',
-        failureRedirect: '/signup'
+        failureRedirect: '/login'
     })),
     app.get('/home', isLoggedIn, authController.home);
     app.get('/logout', authController.logout);
