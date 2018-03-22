@@ -1,5 +1,7 @@
 var db = require("../models");
-var sequelize = require("sequelize");
+var turf = require("turf");
+var axios = require("axios");
+
 module.exports = function(app) {
 
   // scott wrote this to get the user profile back for testing
@@ -37,17 +39,18 @@ module.exports = function(app) {
   })
 
   // update interests (scott:not tested yed)
-  app.put("/api/v1/interests/:userid", function(req, res){
+  app.put("/api/v1/interests/:userid", function(req, res) {
     console.log("req.body.interestData ", req.body.interestData)
-    db.User.update(req.body.interestData, 
-      { where: 
-        {id: req.params.userid}
-    })
-    .then(function (result) {
-      console.log(result);  
-      return;
-  });
-})
+    db.User.update(req.body.interestData, {
+        where: {
+          id: req.params.userid
+        }
+      })
+      .then(function(result) {
+        console.log(result);
+        return;
+      });
+  })
 
   // get user's friends
   app.get("/api/v1/friends/:userid", function(req, res) {
@@ -89,36 +92,85 @@ module.exports = function(app) {
       console.log("html ", html);
     });
   });
-
+  let coords = [];
   // post user event
-  app.post("/api/v1/events", function(req, res) {
-    db.Event.create(req.body).then(function(dbPost) {
-      res.json(dbPost);
-      console.log(dbPost);
+  app.post("/api/v1/addevent", function(req, res) {
+
+    let attendees = [1, 2, 3, 4]
+
+    let count = 0;
+    db.Event.create(req.body).then((dbPost) => {
+      attendees.forEach((attendee) => {
+        count++;
+        db.Event.findById(dbPost.dataValues.id).then((corral) => {
+          db.User.findById(attendee).then((user) => {
+            let address = user.dataValues.address;
+            let plus = address.replace(/\s/g, "+");
+            var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + '&key=AIzaSyA4xkuT8TnhzYOPwd_otmmso3HiwO7ScBo';
+            axios.get(url)
+              .then(response => {
+                coords.push(turf.point([response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]));
+                // console.log(turf.point([response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]))
+              }).catch(error => {
+                console.log(error);
+              });
+            corral.addEvent(user);
+
+          });
+        });
+        if (count === attendees.length) {
+          console.log('coords4', coords);
+          res.json(centerz(coords, req.body.interests));
+
+        }
+      });
+
     });
   });
 
   // add friend
   app.post("/api/v1/friends/:userid", function(req, res) {
     db.User.findById(req.params.userid).then((user) => {
-      db.User.findById(6).then((friend) => {
+      db.User.findById(req.body.friendid).then((friend) => {
         user.addFriend(friend).then((dbPost) => {
           console.log(dbPost)
+          res.json(dbPost)
         })
       })
     });
   });
 
-  // add to user_event
-  app.post("/api/v1/events/:userid", function(req, res) {
-    db.User.findById(req.params.userid).then((user) => {
-      db.Event.findById(4).then((corral) => {
-        user.addEvent(corral).then((dbPost) => {
-          console.log(dbPost)
-        })
-      })
-    });
+  // add to user_event (old integrated into create event)
+  // app.post("/api/v1/events/:userid", function(req, res) {
+  //   db.User.findById(req.params.userid).then((user) => {
+  //     db.Event.findById(req.body.eventid).then((corral) => {
+  //       user.addEvent(corral).then((dbPost) => {
+  //         console.log(dbPost)
+  //       })
+  //     })
+  //   });
+  // });
+
+
+};
+
+function centerz(lnglat, interest) {
+  var feat = turf.featureCollection(lnglat)
+  // console.log(feat)
+  var centroid = turf.centroid(feat)
+  console.log(centroid);
+  let cent = centroid.geometry.coordinates[1] + "," + centroid.geometry.coordinates[0]
+  console.log(cent);
+  // return cent;
+  nearbyLoc(cent, interest)
+};
+
+function nearbyLoc(location, keyword) {
+  let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=3200&keyword=" + keyword + "&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
+
+  axios.get(url)
+  .then(response => {
+    console.log(response.data.results);
+    return response.data;
   });
-
-
 };
