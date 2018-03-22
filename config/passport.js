@@ -1,5 +1,6 @@
 var bCrypt = require('bcrypt-nodejs');
 var passport = require('passport');
+var User = require('../models/users.js');
 
 module.exports = function (passport, user) {
     var User = user;
@@ -10,7 +11,7 @@ module.exports = function (passport, user) {
             passwordField: 'password',
             passReqToCallback: true
         },
-        function (req, email, password, done) {
+        function (req, email_address, password, done) {
             var generateHash = function (password) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
@@ -30,7 +31,9 @@ module.exports = function (passport, user) {
                             email_address: email_address,
                             password: userPassword,
                             first_name: req.body.first_name,
-                            last_name: req.body.last_name
+                            last_name: req.body.last_name,
+                            phone: req.body.phone,
+                            address: req.body.address
                         };
                     User.create(data).then(function (newUser, created) {
                         if (!newUser) {

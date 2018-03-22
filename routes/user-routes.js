@@ -98,7 +98,8 @@ module.exports = function(app) {
     });
   });
 
-  // add friend
+  // add friend post the userid and friendid
+  // (6) req.body.id
   app.post("/api/v1/friends/:userid", function(req, res) {
     db.User.findById(req.params.userid).then((user) => {
       db.User.findById(6).then((friend) => {
