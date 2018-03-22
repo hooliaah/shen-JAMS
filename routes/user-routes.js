@@ -22,6 +22,23 @@ module.exports = function(app) {
     });
   })
 
+  // retrieve userid by email search
+  app.get("/api/v1/search/email/:email", function(req, res) {
+    db.User.findOne({
+      where: {
+        email_address: req.params.email
+      }
+    }).then(function(record) {
+      console.log(record);
+      console.log("given " + req.params.email + " returns ID and email " + record.dataValues.id, record.dataValue.email_address);
+      var hbsObject = {
+        record: record.dataValues.id
+      }
+      res.json(record.dataValues.id
+      );
+    });
+  })
+
   app.get("/api/v1/interests/:userid", function(req, res) {
     db.User.findOne({
       where: {

@@ -1,3 +1,7 @@
+a {
+  color: white;
+}
+
 .nav-item {
   width: 50%;
   text-align: center;
@@ -29,7 +33,7 @@
 }
 
 #page-heading {
-  color: blue;
+  color: #007bff;
   text-align: center;
 }
 
