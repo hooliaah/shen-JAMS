@@ -2,7 +2,18 @@ $(window).on('load', function() {
 
   var userId = null;
 
-  console.log("userID", userId);
+  // retrieve the userId from the url suffix
+  var parts = window.location.href.split('/');
+  var userId = parts.pop() || parts.pop();  // handle potential trailing slash
+
+  // get user first_name from database to populate menu item
+  $.get("/api/v1/user/" + userId).then(function(data) {
+    console.log("data",data);
+    firstName = data[0].first_name;
+    // Convert to Camel Case
+    firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+    $("#user-name").text(firstName);
+  })
 
   // $("find-me").on("click", getLocation);
 

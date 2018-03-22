@@ -25,15 +25,15 @@ module.exports = function(app) {
       }]
     }).then(function(dbPost) {
       var hbsObject = {
-        record: dbPost[0].Events
+        record: dbPost[0]
       }
       res.render("home", hbsObject);
-      // console.log(dbPost,hbsObject);
+      console.log("hbsObject", hbsObject);
       // res.json(hbsObject);
     });
   })
 
-  app.get("/addevent", function(req, res) {
+  app.get("/addevent/:userid", function(req, res) {
     // check for session key
     // if session key go to home page else go to login page
     res.render("addevent");
