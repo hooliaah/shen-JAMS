@@ -4,6 +4,7 @@ var User = require("../models/users.js");
 var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function (passport, user) {
+    // var LocalStrategy = require('passport-local').Strategy;
     var User = user;
     passport.use('local-signup', new LocalStrategy(
         {
@@ -73,7 +74,7 @@ module.exports = function (passport, user) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
 
-        function (req, email, password, done) {
+        function (req, email_address, password, done) {
             var User = user;
             var isValidPassword = function (userpass, password) {
                 return bCrypt.compareSync(password, userpass);
@@ -81,7 +82,7 @@ module.exports = function (passport, user) {
 
             User.findOne({
                 where: {
-                    email: email_address
+                    email_address: email_address
                 }
             }).then(function (user) {
                 if (!user) {
