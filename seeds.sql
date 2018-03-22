@@ -16,15 +16,15 @@ INSERT INTO user_event (createdAt, updatedAt, UserId, EventId) VALUES ('2018-01-
 INSERT INTO user_event (createdAt, updatedAt, UserId, EventId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 3, 3);
 INSERT INTO user_event (createdAt, updatedAt, UserId, EventId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 4, 3);
 
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 1, 2);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 1, 3);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 1, 4);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 2, 1);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 2, 3);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 2, 4);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 3, 1);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 3, 2);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 3, 4);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 4, 1);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 4, 2);
-INSERT INTO user_friends (createdAt, updatedAt, UserID, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 4, 3);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 1, 2);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 1, 3);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 1, 4);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 2, 1);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 2, 3);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 2, 4);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 3, 1);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 3, 2);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 3, 4);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 4, 1);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 4, 2);
+INSERT INTO user_friends (createdAt, updatedAt, UserId, friendId) VALUES ('2018-01-01 10:10:19', '2018-01-01 10:10:20', 4, 3);
