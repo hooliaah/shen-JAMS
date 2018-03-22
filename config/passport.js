@@ -81,7 +81,7 @@ module.exports = function (passport, user) {
 
             User.findOne({
                 where: {
-                    email_address: email_address
+                    email: email_address
                 }
             }).then(function (user) {
                 if (!user) {
