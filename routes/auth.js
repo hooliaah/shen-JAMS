@@ -5,7 +5,7 @@ module.exports = function (app) {
     app.get('/signup', authController.signup);
     app.get('/login', authController.signin);
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/home',
+        successRedirect: '/api/v1/interests/14',
         failureRedirect: '/login'
     })),
     app.get('/home', isLoggedIn, authController.home);
@@ -17,8 +17,11 @@ module.exports = function (app) {
     ));
 
     function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated())
+        if (req.isAuthenticated()) {
+            req.session.isLoggedIn = true;
             return next();
+        }
+            
         res.redirect('/login');
     };
 }

@@ -50,45 +50,45 @@ $(window).on('load', function() {
   // Then update interests
   // Then add friends
 
-  $(document).on("submit", "#signup-form", handleSignupFormSubmit);
+  // $(document).on("submit", "#signup-form", handleSignupFormSubmit);
  
-  // A function to handle what happens when the form is submitted to create a new user
-  function handleSignupFormSubmit(event) {
-    event.preventDefault();
-    // Don't do anything if the name fields hasn't been filled out
-    console.log("entereed HandleSignupForm validation");
-    if (!$("#first-name").val().trim().trim() ||
-        !$("#last-name").val().trim().trim() ||
-        !$("#phone").val().trim().trim() ||
-        !$("#password").val().trim().trim() ||
-        !$("#address-street").val().trim().trim() ||
-        !$("#address-city-state").val().trim().trim() ||
-        !$("#address-zip").val().trim().trim()
-    ) {
-      return;
-    } else {
-      console.log("entered userData formation");
-      var userData = {
-        first_name : $("#first-name").val().trim().trim(),
-        last_name : $("#last-name").val().trim().trim(),
-        password : $("#password").val().trim().trim(),
-        phone : $("#phone").val().trim().trim(),
-        email_address : $("#email-address").val().trim().trim(),
-        address : $("#address-street").val().trim().trim() + ", " + $("#address-city-state").val().trim().trim() + " " + $("#address-zip").val().trim().trim() 
-      }
+  // // A function to handle what happens when the form is submitted to create a new user
+  // function handleSignupFormSubmit(event) {
+  //   event.preventDefault();
+  //   // Don't do anything if the name fields hasn't been filled out
+  //   console.log("entereed HandleSignupForm validation");
+  //   if (!$("#first-name").val().trim().trim() ||
+  //       !$("#last-name").val().trim().trim() ||
+  //       !$("#phone").val().trim().trim() ||
+  //       !$("#password").val().trim().trim() ||
+  //       !$("#address-street").val().trim().trim() ||
+  //       !$("#address-city-state").val().trim().trim() ||
+  //       !$("#address-zip").val().trim().trim()
+  //   ) {
+  //     return;
+  //   } else {
+  //     console.log("entered userData formation");
+  //     var userData = {
+  //       first_name : $("#first-name").val().trim().trim(),
+  //       last_name : $("#last-name").val().trim().trim(),
+  //       password : $("#password").val().trim().trim(),
+  //       phone : $("#phone").val().trim().trim(),
+  //       email_address : $("#email-address").val().trim().trim(),
+  //       address : $("#address-street").val().trim().trim() + ", " + $("#address-city-state").val().trim().trim() + " " + $("#address-zip").val().trim().trim() 
+  //     }
 
-      // post user profile and return interests
-      $.post("api/v1/signup", userData)
-      // $.post("signup", userData)
+  //     // post user profile and return interests
+  //     $.post("api/v1/signup", userData)
+  //     // $.post("signup", userData)
 
-      .then(function(data){
-        userId = data; // data returns the created userid
-        console.log("userId", data);
-        window.location.href="/api/v1/interests/" + userId;
-        // $.get("/api/v1/interests/" + userId);
-      })    
-    }
-  }
+  //     .then(function(data){
+  //       userId = data; // data returns the created userid
+  //       console.log("userId", data);
+  //       window.location.href="/api/v1/interests/" + userId;
+  //       // $.get("/api/v1/interests/" + userId);
+  //     })    
+  //   }
+  // }
 
   // update interests and return friends list
 
