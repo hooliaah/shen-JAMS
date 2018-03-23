@@ -1,6 +1,7 @@
 var db = require("../models");
 var turf = require("turf");
 var axios = require("axios");
+// var passport = require("passport");
 
 module.exports = function(app) {
 
@@ -15,6 +16,13 @@ module.exports = function(app) {
       console.log(dbPost);
     });
   });
+
+  // app.get("/api/v1/getuser", function(req, res) {
+  //   passport.deserializeUser(function (id, done) {
+  //     console.log("id",id)
+  //   });
+  //   res.json(id);
+  // });
 
   // post user to database
   app.post("/api/v1/signup", function(req, res) {
