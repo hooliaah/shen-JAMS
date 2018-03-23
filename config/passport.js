@@ -1,16 +1,18 @@
 var bCrypt = require('bcrypt-nodejs');
 var passport = require('passport');
+var User = require("../models/users.js");
+var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function (passport, user) {
+    // var LocalStrategy = require('passport-local').Strategy;
     var User = user;
-    var LocalStrategy = require('passport-local').Strategy;
     passport.use('local-signup', new LocalStrategy(
         {
             usernameField: 'email_address',
             passwordField: 'password',
             passReqToCallback: true
         },
-        function (req, email, password, done) {
+        function (req, email_address, password, done) {
             var generateHash = function (password) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
@@ -30,7 +32,9 @@ module.exports = function (passport, user) {
                             email_address: email_address,
                             password: userPassword,
                             first_name: req.body.first_name,
-                            last_name: req.body.last_name
+                            last_name: req.body.last_name,
+                            phone: req.body.phone,
+                            address: req.body.address
                         };
                     User.create(data).then(function (newUser, created) {
                         if (!newUser) {
@@ -70,7 +74,7 @@ module.exports = function (passport, user) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
 
-        function (req, email, password, done) {
+        function (req, email_address, password, done) {
             var User = user;
             var isValidPassword = function (userpass, password) {
                 return bCrypt.compareSync(password, userpass);
@@ -78,7 +82,7 @@ module.exports = function (passport, user) {
 
             User.findOne({
                 where: {
-                    email: email
+                    email_address: email_address
                 }
             }).then(function (user) {
                 if (!user) {

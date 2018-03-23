@@ -24,6 +24,23 @@ module.exports = function(app) {
     });
   })
 
+  // retrieve userid by email search
+  app.get("/api/v1/search/email/:email", function(req, res) {
+    db.User.findOne({
+      where: {
+        email_address: req.params.email
+      }
+    }).then(function(record) {
+      console.log(record);
+      console.log("given " + req.params.email + " returns ID and email " + record.dataValues.id, record.dataValue.email_address);
+      var hbsObject = {
+        record: record.dataValues.id
+      }
+      res.json(record.dataValues.id
+      );
+    });
+  })
+
   app.get("/api/v1/interests/:userid", function(req, res) {
     db.User.findOne({
       where: {
@@ -128,13 +145,14 @@ module.exports = function(app) {
     });
   });
 
-  // add friend
+  // add friend post the userid and friendid
+  // (6) req.body.id
   app.post("/api/v1/friends/:userid", function(req, res) {
     db.User.findById(req.params.userid).then((user) => {
       db.User.findById(req.body.friendid).then((friend) => {
         user.addFriend(friend).then((dbPost) => {
           console.log(dbPost)
-          res.json(dbPost)
+          res.json(dbPost);
         })
       })
     });

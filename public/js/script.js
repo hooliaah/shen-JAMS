@@ -1,23 +1,38 @@
 $(window).on('load', function() {
-  
+
+  var userId = null;
+
+  // retrieve the userId from the url suffix
+  var parts = window.location.href.split('/');
+  var userId = parts.pop() || parts.pop();  // handle potential trailing slash
+
+  // get user first_name from database to populate menu item
+  $.get("/api/v1/user/" + userId).then(function(data) {
+    console.log("data",data);
+    firstName = data[0].first_name;
+    // Convert to Camel Case
+    firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+    $("#user-name").text(firstName);
+  })
+
   // $("find-me").on("click", getLocation);
 
   $("#signup-button").addClass("convertToGrey");
-  $("#login-form").show();
+  // $("#login-form").show();
 
   $("#login-button").on("click", function () {
       $("#signup-button").addClass("convertToGrey");
       $("#signup-button").removeClass("active");
-      $("#login-form").show();
-      $("#signup-form").hide();
+      // $("#login-form").show();
+      // $("#signup-form").hide();
       $(this).addClass("active").removeClass("convertToGrey");
   });
 
   $("#signup-button").on("click", function () {
       $("#login-button").addClass("convertToGrey");
       $("#login-button").removeClass("active");
-      $("#login-form").hide();
-      $("#signup-form").show();
+      // $("#login-form").hide();
+      // $("#signup-form").show();
       $(this).addClass("active").removeClass("convertToGrey");
   });
   
@@ -63,12 +78,14 @@ $(window).on('load', function() {
       }
 
       // post user profile and return interests
-
       $.post("api/v1/signup", userData)
+      // $.post("signup", userData)
+
       .then(function(data){
         userId = data; // data returns the created userid
-        console.log("data", data);
+        console.log("userId", data);
         window.location.href="/api/v1/interests/" + userId;
+        // $.get("/api/v1/interests/" + userId);
       })    
     }
   }
@@ -85,17 +102,18 @@ $(window).on('load', function() {
     console.log("handleInterestFormUpdate");
     console.log("interest coffee val()", $("#interest-coffee").val())
       var interestData = {
-        interest_coffee : $("#interest-coffee").val(),
-        interest_bar : $("#interest-bar").val(),
-        interest_restaurant : $("#interest-restaurant").val(),
-        interest_hike : $("#interest-hike").val(),
-        nterest_park : $("#nterest-park").val(),
-        interest_gym : $("#interest-gym").val(),
-        interest_club : $("#interest-club").val(),
-        interest_churro : $("#interest-churro").val()
+        interest_coffee : $("#interest-coffee").is(":checked"),
+        interest_bar : $("#interest-bar").is(":checked"),
+        interest_restaurant : $("#interest-restaurant").is(":checked"),
+        interest_hike : $("#interest-hike").is(":checked"),
+        interest_park : $("#nterest-park").is(":checked"),
+        interest_gym : $("#interest-gym").is(":checked"),
+        interest_club : $("#interest-club").is(":checked"),
+        interest_churro : $("#interest-churro").is(":checked")
       }
+      console.log("interestData ", interestData);
 
-      $.put("api/v1/interests/" + userId, userData)
+      $.put("api/v1/interests/" + userId, interestData)
       .then(function(data){
         console.log("interests ", data);
         window.location.href="/api/v1/friends/" + userId;

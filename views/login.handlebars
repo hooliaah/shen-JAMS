@@ -9,13 +9,13 @@
           <a class="nav-link" href="#">Login</a>
         </li>
         <li role="presentation" class="nav-item" id="signup-button">
-          <a class="nav-link" href="#">Sign up</a>
+          <a class="nav-link" href="/signup">Sign up</a>
         </li>
       </ul>
 
-      <div class="collapse" id="login-form">
+      <div id="login-form">
 
-        <form>
+        <form method="post">
           <div class="form-group">
             <label for="email">Email:</label>
             <input type="text" class="form-control" name = "email" placeholder="Enter your email...">
@@ -26,48 +26,8 @@
             <input type="password" class="form-control" name = "password" placeholder="Enter your password...">
           </div>
 
-          <button class="btn btn-primary btn-block"><a href="/home">Login</a></button>
-        </form>
-      </div>
 
-
-
-      <div class="collapse" id="signup-form">
-        <form>
-            <div class='form-group'>
-                <label>First Name:</label>
-                <input id="first-name" type='text' placeholder='John' class='form-control'/>
-            </div>
-
-            <div class='form-group'>
-                <label>Last Name:</label>
-                <input id="last-name" type='text' placeholder='Doe' class='form-control'/>
-            </div>
-
-            <div class='form-group'>
-                <label>Phone Number:</label>
-                <input id="phone" type = 'number' placeholder = '(123)456-7890' class='form-control'/>
-            </div>
-
-            <div class='form-group'>
-                <label>Email:</label>
-                <input id="email-address" type='text' placeholder='Enter your Email' class='form-control'/>
-            </div>
-
-            <div class='form-group'>
-                <label>Password:</label>
-                <input id="password" type = 'password' placeholder = 'Password: (must be at least 6 characters)' class='form-control'/>
-            </div>
-
-
-            <div class='form-group'>
-                <label>Default Address:</label>
-                <input id="address-street" type = 'text' placeholder = 'Street, Apt #' class='form-control'/>
-                <input id="address-city-state" type = 'text' placeholder = 'City, State' class='form-control'/>
-                <input id="address-zip" type = 'number' placeholder = 'Zip' class='form-control'/>
-            </div>
-
-            <button class='btn btn-primary btn-block'>Add Interests</button>
+          <button class="btn btn-primary btn-block"><a href="/home/1">Login</a></button>
 
         </form>
       </div>
