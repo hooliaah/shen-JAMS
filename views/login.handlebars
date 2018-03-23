@@ -15,8 +15,9 @@
 
       <div id="login-form">
 
-        {{!-- <form id="login" name="login" method="post" action="login"> --}}
-           <form id="login" name="login">
+
+        <form>
+
           <div class="form-group">
             <label for="username">Email:</label>
             <input type="email" class="form-control" name="email_address" placeholder="Enter your email...">
@@ -27,8 +28,11 @@
             <input type="password" class="form-control" name="password" placeholder="Enter your password...">
           </div>
 
-          {{!-- <input class="btn btn-primary btn-block" type="submit" value="Sign In" /> --}}
-          <button class="btn btn-primary btn-block" type="submit">Sign In</button>
+
+          <button class="btn btn-primary btn-block"><a href="/home/1">Quick Login</a></button>
+          <button class="btn btn-primary btn-block" id="login-button">Login with email</button>
+
+
         </form>
       </div>
 

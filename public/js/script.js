@@ -1,29 +1,21 @@
 $(window).on('load', function() {
 
-  var userId = null;
-
   // retrieve the userId from the url suffix
+  // if not on login page get user first_name from database to populate menu item
   var parts = window.location.href.split('/');
-  var lastPart = parts.pop() || parts.pop();  // handle potential trailing slash
-  // if (lastPart === 'interests') {
-    $.get("/api/v1/getuser").then(function(user) {
-      console.log("user",user);
+
+  var userId = parts.pop() || parts.pop();  // handle potential trailing slash
+  
+  if (userId != 'login' ) {
+    $.get("/api/v1/user/" + userId).then(function(data) {
+      console.log("data",data);
+      firstName = data[0].first_name;
+      // Convert to Camel Case
+      firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+      $("#user-name").text(firstName);
     })
-  // }
+  }
 
-
-  // retrieve the userId from the url suffix
-  // var parts = window.location.href.split('/');
-  // var userId = parts.pop() || parts.pop();  // handle potential trailing slash
-
-  // // get user first_name from database to populate menu item
-  // $.get("/api/v1/user/" + userId).then(function(data) {
-  //   console.log("data",data);
-  //   firstName = data[0].first_name;
-  //   // Convert to Camel Case
-  //   firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
-  //   $("#user-name").text(firstName);
-  // })
 
   // $("find-me").on("click", getLocation);
 
@@ -56,6 +48,25 @@ $(window).on('load', function() {
       });
   };
 
+  // login button action
+  $("#login-button").on("click", function (event) {
+    event.preventDefault();
+    console.log("entered login function");
+    // if (!$("#login-button").val().trim().trim()) {
+    //   return;
+    // } else {
+    //   console.log("email should be ", $("#login-button").val().trim().trim())
+    //   $.get("api/v1/search/email/" + $("#login-button").val().trim().trim())
+    //   // $.post("signup", userData)
+
+    //   .then(function(data){
+    //     userId = data; // data returns the created userid
+    //     console.log("userId", data);
+    //     window.location.href="/home/" + userId;
+    //   })
+    // } 
+  })
+
   // SIGNUP Create new user
   // Then update interests
   // Then add friends
@@ -66,7 +77,7 @@ $(window).on('load', function() {
   function handleSignupFormSubmit(event) {
     event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
-    console.log("entereed HandleSignupForm validation");
+    console.log("entered HandleSignupForm validation");
     if (!$("#first-name").val().trim().trim() ||
         !$("#last-name").val().trim().trim() ||
         !$("#phone").val().trim().trim() ||
