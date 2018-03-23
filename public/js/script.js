@@ -3,6 +3,7 @@ $(window).on('load', function() {
   // retrieve the userId from the url suffix
   // if not on login page get user first_name from database to populate menu item
   var parts = window.location.href.split('/');
+
   var userId = parts.pop() || parts.pop();  // handle potential trailing slash
   
   if (userId != 'login' ) {
@@ -14,6 +15,7 @@ $(window).on('load', function() {
       $("#user-name").text(firstName);
     })
   }
+
 
   // $("find-me").on("click", getLocation);
 

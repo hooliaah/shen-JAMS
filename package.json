@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/hooliaah/shen-JAMS#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
@@ -29,6 +30,7 @@
     "mysql2": "^1.5.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^4.37.1"
+    "sequelize": "^4.37.1",
+    "turf": "^3.0.14"
   }
 }
