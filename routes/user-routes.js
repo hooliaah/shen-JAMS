@@ -136,8 +136,9 @@ module.exports = function(app) {
           });
         });
         if (count === attendees.length) {
-          console.log('coords4', coords);
+          // console.log('coords4', coords);
           res.json(centerz(coords, req.body.interests));
+          console.log('returned', centerz(coords, req.body.interests))
 
         }
       });
@@ -178,17 +179,21 @@ function centerz(lnglat, interest) {
   var centroid = turf.centroid(feat)
   console.log(centroid);
   let cent = centroid.geometry.coordinates[1] + "," + centroid.geometry.coordinates[0]
-  console.log(cent);
+  // console.log(cent);
   // return cent;
-  nearbyLoc(cent, interest)
+  return nearbyLoc(cent, interest)
 };
 
 function nearbyLoc(location, keyword) {
+  let places = {
+
+  };
   let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=3200&keyword=" + keyword + "&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
 
   axios.get(url)
   .then(response => {
-    console.log(response.data.results);
-    return response.data;
+    places = response.data;
+    // console.log('placejson', places)
+    return places;
   });
 };
