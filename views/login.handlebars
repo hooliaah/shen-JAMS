@@ -9,13 +9,14 @@
           <a class="nav-link" href="#">Login</a>
         </li>
         <li role="presentation" class="nav-item" id="signup-button">
-          <a class="nav-link" href="/signup">Sign up</a>
+          <a class="nav-link" >Sign up</a>
         </li>
       </ul>
 
       <div id="login-form">
 
-        <form id="login" name="login" method="post" action="login">
+        {{!-- <form id="login" name="login" method="post" action="login"> --}}
+           <form id="login" name="login">
           <div class="form-group">
             <label for="username">Email:</label>
             <input type="email" class="form-control" name="email_address" placeholder="Enter your email...">
@@ -26,7 +27,8 @@
             <input type="password" class="form-control" name="password" placeholder="Enter your password...">
           </div>
 
-          <input class="btn btn-primary btn-block" type="submit" value="Sign In" />
+          {{!-- <input class="btn btn-primary btn-block" type="submit" value="Sign In" /> --}}
+          <button class="btn btn-primary btn-block" type="submit">Sign In</button>
         </form>
       </div>
 

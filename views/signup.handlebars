@@ -65,7 +65,8 @@
         </li>
       </ul>
       <div id="signup-form">
-        <form id="signup" name="signup" method="post" action="/signup">
+        {{!-- <form id="signup" name="signup" method="post" action="/signup"> --}}
+        <form id="signup" name="signup">
             <div class='form-group'>
                 <label for="first_name">First Name:</label>
                 <input id="first-name" type='text' name="first_name" placeholder='John' class='form-control'/>
@@ -98,8 +99,8 @@
                 <input id="address-city-state" type='text' placeholder = 'City, State' class='form-control'/>
                 <input id="address-zip" type='number' placeholder = 'Zip' class='form-control'/>
             </div>
-            <input class='btn btn-primary btn-block' type="submit" value="Sign Up" />
-            {{!-- <button class='btn btn-primary btn-block'>Add Interests</button> --}}
+            {{!-- <input class='btn btn-primary btn-block' type="submit" value="Sign Up" /> --}}
+            <button class='btn btn-primary btn-block'>Add Interests</button>
 
         </form>
       </div>
