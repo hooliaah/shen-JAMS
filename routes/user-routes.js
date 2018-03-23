@@ -109,10 +109,10 @@ module.exports = function(app) {
       console.log("html ", html);
     });
   });
-  let coords = [];
+
   // post user event
   app.post("/api/v1/addevent", function(req, res) {
-
+    let coords = [];
     let attendees = [1, 2, 3, 4]
 
     let count = 0;
