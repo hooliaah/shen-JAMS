@@ -6,12 +6,18 @@ var path = require("path");
 // // =============================================================
 module.exports = function(app) {
 
-  // login - checks 
+  // login - checks
   app.get("/", function(req, res) {
     // check for session key
     // if session key go to home page else go to login page
     res.render("login");
   });
+
+  app.get("/home", function(req, res) {
+      // check for session key
+      // if session key go to home page else go to login page
+      res.render("/home");
+    });
 
   app.get("/home/:userid", function(req, res) {
     db.User.findAll({
