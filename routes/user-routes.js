@@ -1,6 +1,7 @@
 var db = require("../models");
 var turf = require("turf");
 var axios = require("axios");
+
 // var passport = require("passport");
 
 module.exports = function (app) {
@@ -123,13 +124,13 @@ module.exports = function (app) {
   app.post("/api/v1/addevent", function (req, res) {
     let coords = [];
     let attendees = [1, 2, 3, 4]
-
     let count = 0;
+
     db.Event.create(req.body).then((dbPost) => {
       attendees.forEach((attendee) => {
         db.Event.findById(dbPost.dataValues.id).then((corral) => {
           db.User.findById(attendee).then((user) => {
-            console.log("user", user.first_name);
+          
             let address = user.dataValues.address;
             let plus = address.replace(/\s/g, "+");
             var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + '&key=AIzaSyA4xkuT8TnhzYOPwd_otmmso3HiwO7ScBo';
