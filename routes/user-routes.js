@@ -153,9 +153,10 @@ module.exports = function (app) {
                   centerz(coords, req.body.interest, function(response) {
                     // console.log("response", response);
                     var hbsObject = {
-                      response: response.dataValues
+                      response: response
                     }
-                    res.render("showlocation", hbsObject);
+                    // console.log(hbsObject);
+                    res.json(hbsObject);
                   });
                   // console.log('returned', centerz(coords, req.body.interest))
                 }
@@ -180,18 +181,6 @@ module.exports = function (app) {
       })
     });
   });
-
-  // add to user_event (old integrated into create event)
-  // app.post("/api/v1/events/:userid", function(req, res) {
-  //   db.User.findById(req.params.userid).then((user) => {
-  //     db.Event.findById(req.body.eventid).then((corral) => {
-  //       user.addEvent(corral).then((dbPost) => {
-  //         console.log(dbPost)
-  //       })
-  //     })
-  //   });
-  // });
-
 };
 
 function centerz(lnglat, interest, cb) {
@@ -201,7 +190,7 @@ function centerz(lnglat, interest, cb) {
   var centroid = turf.centroid(feat)
   // console.log("centroid", centroid);
   let cent = centroid.geometry.coordinates[0] + "," + centroid.geometry.coordinates[1];
-  console.log("cent", cent);
+  // console.log("cent", cent);
   nearbyLoc(cent, interest, cb);
 };
 
