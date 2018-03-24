@@ -3,9 +3,12 @@
   text-align: center;
 }
 
+
 .nav-link {
    font-size: 25px;
 }
+
+
 
 .nav-tabs {
   list-style: none;
@@ -51,7 +54,7 @@
   margin-right: 15%;
 }
 
-#signup-container .nav a {
+#signup-container .nav .nav-link {
   padding: 20px;
   /* margin-top: 20px; */
 }
@@ -68,15 +71,21 @@
   margin-top: 20px;
 }
 
-
+.active a{
+  color:#000;
+}
 .convertToGrey {
   background: lightgrey;
   border-radius: 4px;
   margin:0;
 }
+.convertToGrey .nav-link{
+  color:#fff;
+}
 
 #login-container .nav a:hover {
   background: #fff;
+  color:#000;
   border:none;
 }
 
@@ -91,6 +100,13 @@
   margin-top: 50px;
 }
 
+
+#login-form button{
+  background: #000;
+}
+#login-form button a{
+  color:#fff;
+}
 
 
   /*justify-content: space-around;

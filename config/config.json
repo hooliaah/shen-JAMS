@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
-    "password": "12345",
-    "database": "shen_jams",
+    "username": "root1",
+    "password": "",
+    "database": "bamazon",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
