@@ -108,6 +108,13 @@
   color:#fff;
 }
 
+#signup-form button {
+  background: #000;
+}
+
+#signup-form button a{
+  color: #fff;
+}
 
   /*justify-content: space-around;
 }*/
