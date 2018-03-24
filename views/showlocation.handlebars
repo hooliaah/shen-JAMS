@@ -1,15 +1,20 @@
+{{#each places}}
+<p>{{name}}</p>
+{{/each}}
+
+<div id="data-store" data-loc="{{loc}}"></div>
+
 <h1 id="location-header">
     Best Meeting Places</h1>
 
 <div id="map" style="width:350px;height:350px;">My map will go here</div>
 
-{{!-- <p>{{}}</p> --}}
-
 <script>
 
     function myMap() {
+        console.log("data" , $("#data-store").data("loc"));
     var mapOptions = {
-    center: new google.maps.LatLng(34.101625874999996,-118.387118975),
+    center: new google.maps.LatLng($("#data-store").data("loc")),
     zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP
     }

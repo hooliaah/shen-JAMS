@@ -1,20 +1,19 @@
 <h3 id="page-heading" style="my-3">Your Events</h3>
 
 <!-- EVENT ACCORDIAN -->
+
+{{#each record.Events}}
  <div id="accordion">
-
-  {{#each record.Events}}
-
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{dataValues.id}}" aria-expanded="true" aria-controls="collapseOne">
           {{dataValues.event_name}}
         </button>
       </h5>
     </div>
 
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+    <div id="collapse{{dataValues.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
         Location: {{dataValues.event_location}}
         <br>
@@ -22,52 +21,12 @@
       </div>
     </div>
   </div>
-  {{/each}}
 </div>
-
-
-
-
-<!-- <div class="card">
-<div class="card-header" id="headingTwo">
-  <h5 class="mb-0">
-    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-      EVENT 2 // DATE
-    </button>
-  </h5>
-</div>
-
-<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-  <div class="card-body">
-    TIME OF EVENT //
-    LOCATION OF EVENT //
-    FRIENDS ATTENTING EVENT
-  </div>
-</div>
-</div>
-<div class="card">
-<div class="card-header" id="headingThree">
-  <h5 class="mb-0">
-    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-      EVENT 3 // DATE
-    </button>
-  </h5>
-</div>
-<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-  <div class="card-body">
-    TIME OF EVENT //
-    LOCATION OF EVENT //
-    FRIENDS ATTENTING EVENT
-  </div>
-</div>
-</div>
-</div> -->
-
+{{/each}}
 <hr>
-<button class='btn btn-primary btn-block' id="add-event-btn"><a href="/addevent">Add Event</a></button> 
+<button class='btn btn-primary btn-block' id="add-event-btn"><a href="/addevent/1">Add Event</a></button> 
 
-
-<!-- your location -->
+<!-- your current location -->
 <div>Current Location:<span id="user-location-display"> Los Angeles, CA</span></div>
 
 <!-- update location button -->

@@ -41,7 +41,7 @@ module.exports = function(app) {
   })
 
 
-  app.get("/addevent", function(req, res) {
+  app.get("/addevent/:userid", function(req, res) {
     // check for session key
     // if session key go to home page else go to login page
     res.render("addevent");

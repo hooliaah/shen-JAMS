@@ -18,13 +18,15 @@
 <body>
   <!-- nav bar with logo and menu drop down side bar with home, friends, profile, events, logout-->
   <nav id="nav-bar" class="navbar sticky-top navbar-light bg-faded">
-    <p>Hello,
-      <span id="user-name"></span>
-    </p>
-    <a class="navbar-brand" href="#">
+    <div id="name-box">
+      <p>Hello,
+        <span id="user-name"></span>
+      </p>
+    </div>
+    <a id="logo-box" class="navbar-brand text-center mx-auto" href="#">
       <img id="logo" src="/img/logo.png" width="70" height="80" alt="friend corral logo">
     </a>
-
+    <div id="menu-box">
     <div class="btn-group">
       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Menu
@@ -39,6 +41,7 @@
         <a class="dropdown-item" href="/showlocation">location</a>
         <a class="dropdown-item" href="/">Log Out</a>
       </div>
+    </div>
     </div>
   </nav>
 

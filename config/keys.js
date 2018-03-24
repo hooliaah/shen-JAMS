@@ -1,4 +1,4 @@
 exports.keys = {
-   googlemapsapi : 'ABC',
-   googleplacesapi : 'ABC'
+   googlemapsapikey : 'ABC',
+   googleplacesapikey : 'ABC'
 }

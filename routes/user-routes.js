@@ -133,32 +133,23 @@ module.exports = function (app) {
 
             let address = user.dataValues.address;
             let plus = address.replace(/\s/g, "+");
-            var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + "&key=" + process.env.GOOGLE_MAPS_KEY;
+            var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + "&key=" + 'AIzaSyA4xkuT8TnhzYOPwd_otmmso3HiwO7ScBo';
+            // var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + "&key=" + process.env.GOOGLE_MAPS_KEY;
 
             axios.get(url)
               .then(response => {
-                // console.log("count", count)
                 count++;
-                // console.log("address, plus, url", address, plus, url)
-                // console.log("latlng", response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng);
                 var turfPoint = turf.point([response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng]);
-                // console.log("turfPoint", turfPoint);
-                // coords.push(turfPoint.geometry.coordinates);
                 coords.push(turfPoint);
-                // console.log('coords1', coords);
-                // coords.push(turf.point([response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng]));
                 if (count === attendees.length) {
-                  // console.log('coords4', coords);
-                  // res.json(centerz(coords, req.body.interest));
-                  centerz(coords, req.body.interest, function(response) {
-                    // console.log("response", response);
+                  centerz(coords, req.body.interest, function(response, location) {
+                    console.log("centerz response ",response.results)
                     var hbsObject = {
-                      response: response
+                      loc: location,
+                      places: response.results
                     }
-                    // console.log(hbsObject);
-                    res.send(hbsObject);
+                    res.render("showlocation", hbsObject);
                   });
-                  // console.log('returned', centerz(coords, req.body.interest))
                 }
               }).catch(error => {
                 console.log(error);
@@ -177,20 +168,16 @@ module.exports = function (app) {
         user.addFriend(friend).then((dbPost) => {
           console.log(dbPost)
           res.json(dbPost);
+          })
         })
-      })
+      });
     });
-  });
-};
+  };
 
 function centerz(lnglat, interest, cb) {
-  // console.log("lnglat interest", lnglat, interest);
   var feat = turf.featureCollection(lnglat);
-  // console.log("feat", feat);
   var centroid = turf.centroid(feat)
-  // console.log("centroid", centroid);
   let cent = centroid.geometry.coordinates[0] + "," + centroid.geometry.coordinates[1];
-  // console.log("cent", cent);
   nearbyLoc(cent, interest, cb);
 };
 
@@ -203,6 +190,6 @@ function nearbyLoc(location, interest, cb) {
     .then(response => {
       places = response.data;
       // console.log('place json', places);
-      cb(places);
+      cb(places,location);
     });
 };

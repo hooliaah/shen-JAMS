@@ -6,7 +6,9 @@ $(window).on('load', function () {
 
   var userId = parts.pop() || parts.pop();  // handle potential trailing slash
 
-  if (userId != 'login') {
+  if (!isNaN(userId)) {
+    $("#name-box").show();
+    $("#menu-box").show();
     $.get("/api/v1/user/" + userId).then(function (data) {
       // console.log("data",data);
       firstName = data[0].first_name;
@@ -14,8 +16,10 @@ $(window).on('load', function () {
       firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
       $("#user-name").text(firstName);
     })
+  } else {
+    $("#name-box").hide();
+    $("#menu-box").hide();
   }
-
 
   // $("find-me").on("click", getLocation);
   $("#login-form").show();
@@ -37,36 +41,7 @@ $(window).on('load', function () {
     $(this).addClass("active").removeClass("convertToGrey");
   });
 
-  // function getLocation() {
-  //     $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCp3aTtHLbEh8qxnsXxPGo2mJbzuRmx8QY", function(data)
-  //     {
-  //       console.log(data)
-  //     })
-  //     .catch((err) => {
-  //       console.error(err.message);
-  //     });
-  // };
-
-  // login button action
-  // $("#login-button").on("click", function (event) {
-  //   event.preventDefault();
-  //   console.log("entered login function");
-  //   // if (!$("#login-button").val().trim().trim()) {
-  //   //   return;
-  //   // } else {
-  //   //   console.log("email should be ", $("#login-button").val().trim().trim())
-  //   //   $.get("api/v1/search/email/" + $("#login-button").val().trim().trim())
-  //   //   // $.post("signup", userData)
-
-  //   //   .then(function(data){
-  //   //     userId = data; // data returns the created userid
-  //   //     console.log("userId", data);
-  //   //     window.location.href="/home/" + userId;
-  //   //   })
-  //   // }
-  // })
-
-  // SIGNUP Create new user
+    // SIGNUP Create new user
   // Then update interests
   // Then add friends
 
@@ -145,12 +120,14 @@ $(window).on('load', function () {
 
   // A function to create a new event
   function createNewEvent(event) {
-    event.preventDefault();
+        event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
     var newEventData = {
       event_name: $("#event-name").val().trim().trim(),
       event_time: $("#event-time").val().trim().trim(),
+      interests: 'restaurant'
     }
+    console.log("newEventData",newEventData);
 
     $.post("/api/v1/addevent", newEventData)
       .then(function (data) {
