@@ -29,11 +29,11 @@ $(window).on('load', function() {
       $(this).addClass("active").removeClass("convertToGrey");
   });
 
-  $("#login-button").on("click", function () {
-      $("#signup-button").addClass("convertToGrey");
-      $("#signup-button").removeClass("active");
-      $("#login-form").show();
-      $("#signup-form").hide();
+  $("#signup-button").on("click", function () {
+      $("#login-button").addClass("convertToGrey");
+      $("#login-button").removeClass("active");
+      $("#signup-form").show();
+      $("#login-form").hide();
       $(this).addClass("active").removeClass("convertToGrey");
   });
 
