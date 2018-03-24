@@ -17,7 +17,7 @@ $(window).on('load', function() {
   }
 
 
-  $("find-me").on("click", getLocation);
+  // $("find-me").on("click", getLocation);
   $("#login-form").show();
   $("#signup-button").addClass("convertToGrey");
 
@@ -37,15 +37,15 @@ $(window).on('load', function() {
       $(this).addClass("active").removeClass("convertToGrey");
   });
 
-  function getLocation() {
-      $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCp3aTtHLbEh8qxnsXxPGo2mJbzuRmx8QY", function(data)
-      {
-        console.log(data)
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
-  };
+  // function getLocation() {
+  //     $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCp3aTtHLbEh8qxnsXxPGo2mJbzuRmx8QY", function(data)
+  //     {
+  //       console.log(data)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err.message);
+  //     });
+  // };
 
   // login button action
   $("#login-button").on("click", function (event) {
@@ -140,6 +140,25 @@ $(window).on('load', function() {
       })
     }
 
+      // create new event
+  $(document).on("click", "#create-event-button", createNewEvent);
 
+  // A function to create a new event
+  function createNewEvent(event) {
+    console.log("entering new event");
+    event.preventDefault();
+    // Don't do anything if the name fields hasn't been filled out
+      var newEventData = {
+        event_name: $("#event-name").val().trim().trim(),
+        event_time: $("#event-date").val().trim().trim() + $("#event-time").val().trim().trim(),
+      }
+      console.log("newEventData ", newEventData);
+
+      $.post("/api/v1/addevent", newEventData)
+      .then(function(data){
+        console.log("new event ", data);
+        window.location.href="/api/v1/showlocation/" + userId;
+      })
+    }
 
 });
