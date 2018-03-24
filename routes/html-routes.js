@@ -39,6 +39,12 @@ module.exports = function(app) {
     res.render("addevent");
   });
 
+  app.get("/showlocation/:userid", function(req, res) {
+    // check for session key
+    // if session key go to home page else go to login page
+    res.render("showlocation");
+  });
+
   // app.get("addinterests/:userid", function(req, res) {
   //   db.User.findOne({
   //     where: {

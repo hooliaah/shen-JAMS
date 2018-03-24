@@ -16,25 +16,25 @@ $(window).on('load', function() {
     })
   }
 
-
+ 
   // $("find-me").on("click", getLocation);
 
   $("#signup-button").addClass("convertToGrey");
-  // $("#login-form").show();
+  $("#login-form").show();
 
   $("#login-button").on("click", function () {
       $("#signup-button").addClass("convertToGrey");
       $("#signup-button").removeClass("active");
-      // $("#login-form").show();
-      // $("#signup-form").hide();
+      $("#login-form").show();
+      $("#signup-form").hide();
       $(this).addClass("active").removeClass("convertToGrey");
   });
 
   $("#signup-button").on("click", function () {
       $("#login-button").addClass("convertToGrey");
       $("#login-button").removeClass("active");
-      // $("#login-form").hide();
-      // $("#signup-form").show();
+      $("#login-form").hide();
+      $("#signup-form").show();
       $(this).addClass("active").removeClass("convertToGrey");
   });
   
@@ -48,10 +48,14 @@ $(window).on('load', function() {
       });
   };
 
+  $("#create-event-button").on("click", function(event) {
+    window.location.href="/showlocation/" + userId;
+  })
   // login button action
   $("#login-button").on("click", function (event) {
     event.preventDefault();
     console.log("entered login function");
+    window.location.href="/home/1";
     // if (!$("#login-button").val().trim().trim()) {
     //   return;
     // } else {
