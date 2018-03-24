@@ -17,7 +17,7 @@ module.exports = function(app) {
   app.get("/home", function(req, res) {
       // check for session key
       // if session key go to home page else go to login page
-      res.render("/home");
+      res.render("home");
     });
 
   app.get("/home/:userid", function(req, res) {
@@ -40,4 +40,16 @@ module.exports = function(app) {
     });
   })
 
+
+  app.get("/addevent", function(req, res) {
+    // check for session key
+    // if session key go to home page else go to login page
+    res.render("addevent");
+  });
+
+  app.get("/showlocation", function(req, res) {
+    // check for session key
+    // if session key go to home page else go to login page
+    res.render("showlocation");
+  });
 

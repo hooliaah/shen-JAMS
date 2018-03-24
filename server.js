@@ -9,7 +9,6 @@ var bodyParser = require("body-parser");
 var https = require("https");
 var exphbs = require("express-handlebars");
 var keys = require("./config/keys.js");
-require('dotenv').config();
 
 // set port
 var PORT = process.env.PORT || 9000;

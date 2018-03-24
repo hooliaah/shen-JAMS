@@ -1,7 +1,7 @@
 var db = require("../models");
 var turf = require("turf");
 var axios = require("axios");
-
+require("dotenv").config();
 // var passport = require("passport");
 
 module.exports = function (app) {
@@ -130,47 +130,47 @@ module.exports = function (app) {
       attendees.forEach((attendee) => {
         db.Event.findById(dbPost.dataValues.id).then((corral) => {
           db.User.findById(attendee).then((user) => {
-          
+
             let address = user.dataValues.address;
             let plus = address.replace(/\s/g, "+");
-            var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + '&key=AIzaSyA4xkuT8TnhzYOPwd_otmmso3HiwO7ScBo';
+            var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + "&key=" + process.env.GOOGLE_MAPS_KEY;
+
             axios.get(url)
               .then(response => {
-                console.log("count", count)
+                // console.log("count", count)
                 count++;
-                console.log("address, plus, url", address, plus, url)
-                console.log("latlng", response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng);
+                // console.log("address, plus, url", address, plus, url)
+                // console.log("latlng", response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng);
                 var turfPoint = turf.point([response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng]);
-                console.log("turfPoint", turfPoint);
+                // console.log("turfPoint", turfPoint);
                 // coords.push(turfPoint.geometry.coordinates);
                 coords.push(turfPoint);
-                console.log('coords1', coords);
+                // console.log('coords1', coords);
                 // coords.push(turf.point([response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng]));
                 if (count === attendees.length) {
-                  console.log('coords4', coords);
-                  // res.json(centerz(coords, req.body.interests));
-                  res.json(centerz(coords, req.body.interests));
-                  console.log('returned', centerz(coords, req.body.interests))
-
+                  // console.log('coords4', coords);
+                  // res.json(centerz(coords, req.body.interest));
+                  centerz(coords, req.body.interest, function(response) {
+                    // console.log("response", response);
+                    var hbsObject = {
+                      response: response
+                    }
+                    // console.log(hbsObject);
+                    res.json(hbsObject);
+                  });
+                  // console.log('returned', centerz(coords, req.body.interest))
                 }
-                // console.log(turf.point([response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]))
               }).catch(error => {
                 console.log(error);
               });
             corral.addEvent(user);
-
           });
         });
-
       });
-
-
-
     });
   });
 
-  // add friend post the userid and friendid
-  // (6) req.body.id
+  // add friend post the userid and friendId
   app.post("/api/v1/friends/:userid", function (req, res) {
     db.User.findById(req.params.userid).then((user) => {
       db.User.findById(req.body.friendid).then((friend) => {
@@ -181,47 +181,28 @@ module.exports = function (app) {
       })
     });
   });
-
-  // add to user_event (old integrated into create event)
-  // app.post("/api/v1/events/:userid", function(req, res) {
-  //   db.User.findById(req.params.userid).then((user) => {
-  //     db.Event.findById(req.body.eventid).then((corral) => {
-  //       user.addEvent(corral).then((dbPost) => {
-  //         console.log(dbPost)
-  //       })
-  //     })
-  //   });
-  // });
-
-
 };
 
-function centerz(lnglat, interest) {
-  console.log("lnglat interest", lnglat, interest);
+function centerz(lnglat, interest, cb) {
+  // console.log("lnglat interest", lnglat, interest);
   var feat = turf.featureCollection(lnglat);
-  // feat.type = 'Point';
-  console.log("feat", feat);
+  // console.log("feat", feat);
   var centroid = turf.centroid(feat)
-  console.log("centroid", centroid);
+  // console.log("centroid", centroid);
   let cent = centroid.geometry.coordinates[0] + "," + centroid.geometry.coordinates[1];
-  console.log("cent", cent);
-  // return cent;
-
-
-  return nearbyLoc(cent, interest)
+  // console.log("cent", cent);
+  nearbyLoc(cent, interest, cb);
 };
 
-function nearbyLoc(location, keyword) {
+function nearbyLoc(location, interest, cb) {
   let places = {};
-  // let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.017927125,-109.87028785000001&radius=3200&keyword=restaurant&key=AIzaSyCvWNF9Ua92qgiBv2TyMRSXQ4bX0GT-qiE";
-  let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=3200&keyword=restaurant&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
-  // let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=3200&keyword=" + keyword + "&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
+  let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + interest + "&location=" + location + "&radius=3200&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
+  // console.log("URL: ", url);
 
   axios.get(url)
     .then(response => {
-      console.log("response", response.data);
       places = response.data;
-      console.log('place json', places)
-      return places;
+      // console.log('place json', places);
+      cb(places);
     });
 };
