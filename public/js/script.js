@@ -5,7 +5,7 @@ $(window).on('load', function() {
   var parts = window.location.href.split('/');
 
   var userId = parts.pop() || parts.pop();  // handle potential trailing slash
-  
+
   if (userId != 'login' ) {
     $.get("/api/v1/user/" + userId).then(function(data) {
       console.log("data",data);
@@ -16,12 +16,10 @@ $(window).on('load', function() {
     })
   }
 
- 
-  // $("find-me").on("click", getLocation);
 
-
-  $("#signup-button").addClass("convertToGrey");
+  $("find-me").on("click", getLocation);
   $("#login-form").show();
+  $("#signup-button").addClass("convertToGrey");
 
   $("#login-button").on("click", function () {
       $("#signup-button").addClass("convertToGrey");
@@ -31,14 +29,13 @@ $(window).on('load', function() {
       $(this).addClass("active").removeClass("convertToGrey");
   });
 
-  $("#signup-button").on("click", function () {
-      $("#login-button").addClass("convertToGrey");
-      $("#login-button").removeClass("active");
-      $("#login-form").hide();
-      $("#signup-form").show();
+  $("#login-button").on("click", function () {
+      $("#signup-button").addClass("convertToGrey");
+      $("#signup-button").removeClass("active");
+      $("#login-form").show();
+      $("#signup-form").hide();
       $(this).addClass("active").removeClass("convertToGrey");
   });
-  
 
   function getLocation() {
       $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCp3aTtHLbEh8qxnsXxPGo2mJbzuRmx8QY", function(data)
@@ -50,14 +47,10 @@ $(window).on('load', function() {
       });
   };
 
-  $("#create-event-button").on("click", function(event) {
-    window.location.href="/showlocation/" + userId;
-  })
   // login button action
   $("#login-button").on("click", function (event) {
     event.preventDefault();
     console.log("entered login function");
-    window.location.href="/home/1";
     // if (!$("#login-button").val().trim().trim()) {
     //   return;
     // } else {
@@ -70,7 +63,7 @@ $(window).on('load', function() {
     //     console.log("userId", data);
     //     window.location.href="/home/" + userId;
     //   })
-    // } 
+    // }
   })
 
   // SIGNUP Create new user
