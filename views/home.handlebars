@@ -1,5 +1,12 @@
-
-
+<h3 id="page-heading" style="my-3">Your Events</h3>
+<ul>
+  {{#each record.Events}}
+   <p>ID:{{Events.dataValues.id}} // {{dataValues.event_name}} // {{dataValues.event_time}} // {{dataValues.event_location}}</p>
+  {{/each}}
+</ul>
+<hr>
+<button class='btn btn-primary btn-block' id="location-update-btn"><a href="/addevent/{{record.dataValues.id}}">Add New Event</a></button>
+{{!-- <button><a href="/addevent">Add Event</a></button> --}}
 <!-- event list -->
 <ul class="list-group" id="event-list-display">
 <li type="button" class="list-group-item">Event1</li>
