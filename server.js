@@ -1,5 +1,6 @@
 // Team Shen Jams. Project Friend Corral. March 2018
 
+require("dotenv").config();
 var express = require("express");
 var app = express();
 // var passport = require('passport');
@@ -7,6 +8,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var https = require("https");
 var exphbs = require("express-handlebars");
+var keys = require("./config/keys.js");
 
 // set port
 var PORT = process.env.PORT || 9000;

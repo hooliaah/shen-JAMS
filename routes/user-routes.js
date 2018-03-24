@@ -121,21 +121,37 @@ module.exports = function(app) {
 
   // post user event
   app.post("/api/v1/addevent", function(req, res) {
-    let coords = [];
+   let coords = [];
     let attendees = [1, 2, 3, 4]
 
     let count = 0;
     db.Event.create(req.body).then((dbPost) => {
       attendees.forEach((attendee) => {
-        count++;
         db.Event.findById(dbPost.dataValues.id).then((corral) => {
           db.User.findById(attendee).then((user) => {
+            console.log("user",user.first_name);
             let address = user.dataValues.address;
             let plus = address.replace(/\s/g, "+");
             var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + plus + '&key=AIzaSyA4xkuT8TnhzYOPwd_otmmso3HiwO7ScBo';
             axios.get(url)
-              .then(response => {
-                coords.push(turf.point([response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]));
+            .then(response => {
+                console.log("count", count)
+                count++;
+                console.log("address, plus, url", address, plus, url)
+                console.log("latlng" , response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng);
+                var turfPoint = turf.point([response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng]);
+                console.log("turfPoint", turfPoint);
+                // coords.push(turfPoint.geometry.coordinates);
+                coords.push(turfPoint);
+                console.log('coords1', coords);
+                // coords.push(turf.point([response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng]));
+                if (count === attendees.length) {
+                  console.log('coords4', coords);
+                  // res.json(centerz(coords, req.body.interests));
+                  res.json(centerz(coords, req.body.interests));
+                  console.log('returned', centerz(coords, req.body.interests))
+        
+                }
                 // console.log(turf.point([response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]))
               }).catch(error => {
                 console.log(error);
@@ -144,14 +160,11 @@ module.exports = function(app) {
 
           });
         });
-        if (count === attendees.length) {
-          // console.log('coords4', coords);
-          res.json(centerz(coords, req.body.interests));
-          console.log('returned', centerz(coords, req.body.interests))
-
-        }
+        
       });
-
+      
+        
+      
     });
   });
 
@@ -183,26 +196,31 @@ module.exports = function(app) {
 };
 
 function centerz(lnglat, interest) {
-  var feat = turf.featureCollection(lnglat)
-  // console.log(feat)
+  console.log("lnglat interest", lnglat, interest);
+  var feat = turf.featureCollection(lnglat);
+  // feat.type = 'Point';
+  console.log("feat", feat);
   var centroid = turf.centroid(feat)
-  console.log(centroid);
-  let cent = centroid.geometry.coordinates[1] + "," + centroid.geometry.coordinates[0]
-  // console.log(cent);
+  console.log("centroid", centroid);
+  let cent = centroid.geometry.coordinates[0]  + "," + centroid.geometry.coordinates[1];
+  console.log("cent", cent);
   // return cent;
+  
+  
   return nearbyLoc(cent, interest)
 };
 
 function nearbyLoc(location, keyword) {
-  let places = {
-
-  };
-  let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=3200&keyword=" + keyword + "&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
+  let places = {};
+  // let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.017927125,-109.87028785000001&radius=3200&keyword=restaurant&key=AIzaSyCvWNF9Ua92qgiBv2TyMRSXQ4bX0GT-qiE";
+  let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=3200&keyword=restaurant&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
+  // let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=3200&keyword=" + keyword + "&key=AIzaSyDQEYOINnOnunGRCH1UmluDgkh_au21SCQ";
 
   axios.get(url)
   .then(response => {
+    console.log("response", response.data);
     places = response.data;
-    // console.log('placejson', places)
+    console.log('place json', places)
     return places;
   });
 };
