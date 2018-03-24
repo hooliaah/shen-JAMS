@@ -13,6 +13,8 @@ module.exports = function(app) {
     res.render("login");
   });
 
+
+
   app.get("/home/:userid", function(req, res) {
     db.User.findAll({
       where: {
