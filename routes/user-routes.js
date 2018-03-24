@@ -156,7 +156,7 @@ module.exports = function (app) {
                       response: response
                     }
                     // console.log(hbsObject);
-                    res.json(hbsObject);
+                    res.send(hbsObject);
                   });
                   // console.log('returned', centerz(coords, req.body.interest))
                 }

@@ -156,7 +156,7 @@ $(window).on('load', function () {
       .then(function (data) {
         console.log("new event ", data);
         window.location.href = "/showlocation";
-
+        
       })
   };
 
