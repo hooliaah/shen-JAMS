@@ -48,23 +48,23 @@ $(window).on('load', function () {
   // };
 
   // login button action
-  $("#login-button").on("click", function (event) {
-    event.preventDefault();
-    console.log("entered login function");
-    // if (!$("#login-button").val().trim().trim()) {
-    //   return;
-    // } else {
-    //   console.log("email should be ", $("#login-button").val().trim().trim())
-    //   $.get("api/v1/search/email/" + $("#login-button").val().trim().trim())
-    //   // $.post("signup", userData)
+  // $("#login-button").on("click", function (event) {
+  //   event.preventDefault();
+  //   console.log("entered login function");
+  //   // if (!$("#login-button").val().trim().trim()) {
+  //   //   return;
+  //   // } else {
+  //   //   console.log("email should be ", $("#login-button").val().trim().trim())
+  //   //   $.get("api/v1/search/email/" + $("#login-button").val().trim().trim())
+  //   //   // $.post("signup", userData)
 
-    //   .then(function(data){
-    //     userId = data; // data returns the created userid
-    //     console.log("userId", data);
-    //     window.location.href="/home/" + userId;
-    //   })
-    // }
-  })
+  //   //   .then(function(data){
+  //   //     userId = data; // data returns the created userid
+  //   //     console.log("userId", data);
+  //   //     window.location.href="/home/" + userId;
+  //   //   })
+  //   // }
+  // })
 
   // SIGNUP Create new user
   // Then update interests
